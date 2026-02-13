@@ -1,0 +1,10 @@
+selenium
+webdriver-manager
+pandas
+numpy
+arabic-reshaper
+python-bidi
+deep-translator
+requests
+beautifulsoup4
+openpyxl
