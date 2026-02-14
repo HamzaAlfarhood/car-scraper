@@ -17,28 +17,28 @@ from bidi.algorithm import get_display
 from urllib.parse import urljoin, quote
 from deep_translator import GoogleTranslator
 
-# -------------------- إعدادات الترجمة الأساسية --------------------
+# -------------------- Basic translation settings --------------------
 TRANSLATION_DICT = {
-    # أنواع الوقود
+    # Fuel types
     'كهرباء': 'Electric',
     'هايبرد': 'Hybrid',
     'بنزين': 'Petrol',
     'ديزل': 'Diesel',
-    # حالة السيارة
+    # Car condition
     'جديد (زيرو)': 'New (Zero)',
     'مستعمل': 'Used',
-    # نوع البائع
+    # Seller type
     'شخصي': 'Private',
     'معرض': 'Dealer',
     'وكالة': 'Agency',
     'معرض/وكالة': 'Dealer/Agency',
-    # التأمين
+    # Insurance
     'لا يوجد تأمين': 'No Insurance',
     'يوجد تأمين': 'Insured',
     'تأمين شامل': 'Comprehensive Insurance',
     'تأمين إلزامي': 'Mandatory Insurance',
     'مكفولة': 'Warranty Included',
-    # المدن
+    # Cities
     'عمان': 'Amman',
     'الزرقاء': 'Zarqa',
     'إربد': 'Irbid',
@@ -52,11 +52,11 @@ TRANSLATION_DICT = {
     'العقبة': 'Aqaba',
     'عجلون': 'Ajloun',
     'المنطقة الحرة': 'Free Zone',
-    # ناقل الحركة
+    # Transmission
     'اوتوماتيك': 'Automatic',
     'يدوي': 'Manual',
     'اتوماتيك': 'Automatic',
-    # الألوان
+    # Colors
     'أبيض': 'White',
     'أسود': 'Black',
     'رمادي': 'Gray',
@@ -68,16 +68,16 @@ TRANSLATION_DICT = {
     'بيج': 'Beige',
     'ذهبي': 'Gold',
     'أزرق فاتح': 'Light Blue',
-    # قيم افتراضية
+    # Default values
     'غير محدد': 'Not Specified',
     'غير متوفر': 'N/A',
     'نعم': 'Yes',
     'لا': 'No',
 }
 
-# -------------------- قاموس شامل للماركات والموديلات --------------------
+# -------------------- Comprehensive brand and model dictionaries --------------------
 BRAND_TRANSLATION = {
-    # الماركات اليابانية
+    # Japanese brands
     'تويوتا': 'Toyota',
     'هوندا': 'Honda',
     'نيسان': 'Nissan',
@@ -91,14 +91,14 @@ BRAND_TRANSLATION = {
     'ايسوزو': 'Isuzu',
     'لكزس': 'Lexus',
     'انفينيتي': 'Infiniti',
-    # الماركات الألمانية
+    # German brands
     'مرسيدس': 'Mercedes-Benz',
     'بي ام دبليو': 'BMW',
     'أودي': 'Audi',
     'فولكس فاجن': 'Volkswagen',
     'بورش': 'Porsche',
     'أوبل': 'Opel',
-    # الماركات الأمريكية
+    # American brands
     'فورد': 'Ford',
     'شيفروليه': 'Chevrolet',
     'جيب': 'Jeep',
@@ -108,7 +108,7 @@ BRAND_TRANSLATION = {
     'رام': 'Ram',
     'جمس': 'GMC',
     'لينكولن': 'Lincoln',
-    # الماركات البريطانية
+    # British brands
     'رنج روفر': 'Range Rover',
     'لاند روفر': 'Land Rover',
     'جاغوار': 'Jaguar',
@@ -117,19 +117,19 @@ BRAND_TRANSLATION = {
     'رولز رويس': 'Rolls-Royce',
     'استون مارتن': 'Aston Martin',
     'ماكلارين': 'McLaren',
-    # الماركات الإيطالية
+    # Italian brands
     'فيات': 'Fiat',
     'ألفا روميو': 'Alfa Romeo',
     'مازيراتي': 'Maserati',
     'لوتس': 'Lotus',
     'لامبورغيني': 'Lamborghini',
     'فيراري': 'Ferrari',
-    # الماركات الفرنسية
+    # French brands
     'رينو': 'Renault',
     'بيجو': 'Peugeot',
     'سيتروين': 'Citroën',
     'داسيا': 'Dacia',
-    # الماركات الصينية
+    # Chinese brands
     'بي واي دي': 'BYD',
     'ام جي': 'MG',
     'جاك': 'JAC',
@@ -139,13 +139,13 @@ BRAND_TRANSLATION = {
     'شيري': 'Chery',
     'نيتا': 'Neta',
     'بروتون': 'Proton',
-    # ماركات أخرى
+    # Other brands
     'تيسلا': 'Tesla',
     'فولفو': 'Volvo',
 }
 
 MODEL_TRANSLATION = {
-    # تويوتا
+    # Toyota
     'كامري': 'Camry',
     'كورولا': 'Corolla',
     'يارس': 'Yaris',
@@ -155,19 +155,19 @@ MODEL_TRANSLATION = {
     'برادو': 'Prado',
     'افالون': 'Avalon',
     'سوبرا': 'Supra',
-    # هوندا
+    # Honda
     'سيفيك': 'Civic',
     'اكورد': 'Accord',
     'سي ار في': 'CR-V',
     'اتش ار في': 'HR-V',
     'بايلوت': 'Pilot',
-    # نيسان
+    # Nissan
     'سنترا': 'Sentra',
     'التيما': 'Altima',
     'ماكسيما': 'Maxima',
     'باترول': 'Patrol',
     'قشقاي': 'Qashqai',
-    # هيونداي
+    # Hyundai
     'سوناتا': 'Sonata',
     'النترا': 'Elantra',
     'افانتي': 'Elantra',
@@ -175,28 +175,28 @@ MODEL_TRANSLATION = {
     'توسان': 'Tucson',
     'سانتافي': 'Santa Fe',
     'ازيرا': 'Azera',
-    # كيا
+    # Kia
     'سبورتاج': 'Sportage',
     'سورينتو': 'Sorento',
     'اوبتيما': 'Optima',
     'كادينزا': 'Cadenza',
     'ريو': 'Rio',
     'سول': 'Soul',
-    # مرسيدس
+    # Mercedes
     'الفئة-سي': 'C-Class',
     'الفئة-اي': 'E-Class',
     'الفئة-اس': 'S-Class',
     'جي ال اي': 'GLE',
     'جي ال سي': 'GLC',
     'ايه ام جي': 'AMG',
-    # بي ام دبليو
+    # BMW
     'الفئة الثالثة': '3 Series',
     'الفئة الخامسة': '5 Series',
     'الفئة السابعة': '7 Series',
     'اكس 1': 'X1',
     'اكس 3': 'X3',
     'اكس 5': 'X5',
-    # أودي
+    # Audi
     'ايه 3': 'A3',
     'ايه 4': 'A4',
     'ايه 6': 'A6',
@@ -205,24 +205,24 @@ MODEL_TRANSLATION = {
     'كيو 3': 'Q3',
     'كيو 5': 'Q5',
     'كيو 7': 'Q7',
-    # فورد
+    # Ford
     'فوكس': 'Focus',
     'فيوجن': 'Fusion',
     'موستانج': 'Mustang',
     'اف-150': 'F-150',
     'اكسبلورر': 'Explorer',
-    # شيفروليه
+    # Chevrolet
     'ماليبو': 'Malibu',
     'كامارو': 'Camaro',
     'كورفيت': 'Corvette',
     'سيلفرادو': 'Silverado',
     'تاهو': 'Tahoe',
-    # تيسلا
+    # Tesla
     'موديل 3': 'Model 3',
     'موديل اس': 'Model S',
     'موديل اكس': 'Model X',
     'موديل واي': 'Model Y',
-    # موديلات شائعة أخرى
+    # Other common models
     'باناميرا': 'Panamera',
     'كايين': 'Cayenne',
     'ماكان': 'Macan',
@@ -233,7 +233,7 @@ MODEL_TRANSLATION = {
     'سانديرو': 'Sandero',
 }
 
-# كلمات الفئة (Trim)
+# Trim keywords
 TRIM_KEYWORDS = {
     'Standard': ['standard', 'base', 'اساسي', 'قياسي'],
     'Sport': ['sport', 'spt', 'رياضي'],
@@ -253,13 +253,13 @@ TRIM_KEYWORDS = {
     'Pro': ['pro', 'برو'],
 }
 
-# قائمة الماركات لاستخراج الموديل
+# List of brands for model extraction
 CAR_BRANDS = list(BRAND_TRANSLATION.keys())
 
-# -------------------- دوال الترجمة الذكية للموديل --------------------
+# -------------------- Smart model translation functions --------------------
 def search_car_model_online(car_name):
     """
-    البحث عن ترجمة اسم السيارة عبر الإنترنت (ويكيبيديا)
+    Search for car model translation online (Wikipedia)
     """
     try:
         search_query = quote(f"{car_name} car")
@@ -277,22 +277,23 @@ def search_car_model_online(car_name):
 
 def split_car_model(text):
     """
-    تحليل اسم السيارة إلى أجزاء: ماركة، موديل، فئة
+    Split car name into parts: brand, model, trim
     """
     text = text.strip()
+    original = text
     brand = None
     model = None
     trim = []
     remaining = []
 
-    # البحث عن الماركة
+    # Search for brand
     for ar_brand in BRAND_TRANSLATION.keys():
         if ar_brand in text:
             brand = ar_brand
             text = text.replace(ar_brand, '', 1).strip()
             break
 
-    # البحث عن الموديل
+    # Search for model
     words = text.split()
     for word in words:
         found = False
@@ -305,7 +306,7 @@ def split_car_model(text):
         if found:
             break
 
-    # البحث عن كلمات الفئة (Trim)
+    # Search for trim keywords
     words = text.split()
     for word in words:
         word_lower = word.lower()
@@ -319,7 +320,7 @@ def split_car_model(text):
         if not matched:
             remaining.append(word)
 
-    # تنظيف النص المتبقي
+    # Clean up remaining text
     extra = ' '.join(remaining).strip()
     if extra and not model:
         model = extra
@@ -334,53 +335,53 @@ def split_car_model(text):
 
 def translate_car_model_smart(text):
     """
-    ترجمة ذكية لاسم السيارة باستخدام القواميس والبحث عبر الإنترنت.
+    Smart translation of car names using dictionaries and online search.
     """
     if not isinstance(text, str) or text.strip() == '':
         return text
     original = text.strip()
 
-    # تحليل الاسم
+    # Parse the name
     parts = split_car_model(original)
 
     translated_parts = []
 
-    # ترجمة الماركة
+    # Translate brand
     if parts['brand']:
         translated_parts.append(BRAND_TRANSLATION.get(parts['brand'], parts['brand']))
 
-    # ترجمة الموديل
+    # Translate model
     if parts['model']:
         if parts['model'] in MODEL_TRANSLATION:
             translated_parts.append(MODEL_TRANSLATION[parts['model']])
         else:
-            # محاولة البحث عبر الإنترنت
+            # Try online search
             online = search_car_model_online(parts['model'])
             if online:
                 translated_parts.append(online)
             else:
-                translated_parts.append(parts['model'])  # نتركه كما هو
+                translated_parts.append(parts['model'])  # keep as is
 
-    # إضافة الفئة
+    # Add trim
     if parts['trim']:
         translated_parts.append(parts['trim'])
 
-    # إضافة النص المتبقي
+    # Add extra text
     if parts['extra']:
-        # إذا كان يحتوي على عربي نترجمه عادياً
+        # If it contains Arabic, translate it normally
         if any('\u0600' <= c <= '\u06FF' for c in parts['extra']):
             translated_parts.append(translate_text_fallback(parts['extra']))
         else:
             translated_parts.append(parts['extra'])
 
-    # إذا لم نستطع ترجمة أي شيء، نعيد النص الأصلي
+    # If nothing was translated, return original
     if not translated_parts:
         return original
 
     return ' '.join(translated_parts)
 
 def translate_text_fallback(text, target='en'):
-    """ترجمة نص عادي باستخدام القاموس أو الترجمة الآلية"""
+    """Translate plain text using dictionary or automatic translation."""
     if text in TRANSLATION_DICT:
         return TRANSLATION_DICT[text]
     try:
@@ -392,11 +393,11 @@ def translate_text_fallback(text, target='en'):
     return text
 
 def translate_text(text, target='en'):
-    # دالة عامة تستخدم للنصوص الأخرى (غير الموديل)
+    # General function for other texts (not model)
     return translate_text_fallback(text, target)
 
 def fix_arabic(text):
-    """إعادة تشكيل النص العربي للعرض الصحيح"""
+    """Reshape Arabic text for proper display."""
     if isinstance(text, str) and any("\u0600" <= c <= "\u06FF" for c in text):
         try:
             reshaped_text = arabic_reshaper.reshape(text)
@@ -405,8 +406,9 @@ def fix_arabic(text):
             return text
     return text
 
-# -------------------- دوال استخراج البيانات الأساسية --------------------
+# -------------------- Basic data extraction functions --------------------
 def convert_arabic_numbers(text):
+    """Convert Arabic numerals (e.g., ١٢٣) to Western numbers (123)."""
     arabic_nums = str.maketrans('٠١٢٣٤٥٦٧٨٩', '0123456789')
     return text.translate(arabic_nums)
 
@@ -476,7 +478,7 @@ def extract_json_ld(html):
         pass
     return None
 
-# -------------------- دوال محسنة للموديل --------------------
+# -------------------- Enhanced model extraction functions --------------------
 def extract_model_from_card_and_page(card, page_html=None, page_driver=None):
     # 1. JSON-LD
     if page_html:
@@ -486,7 +488,7 @@ def extract_model_from_card_and_page(card, page_html=None, page_driver=None):
                 return json_data['name']
             if 'model' in json_data and json_data['model']:
                 return json_data['model']
-    # 2. h1 من صفحة التفاصيل
+    # 2. h1 from details page
     if page_driver:
         try:
             h1 = page_driver.find_element(By.CSS_SELECTOR, "h1")
@@ -495,7 +497,7 @@ def extract_model_from_card_and_page(card, page_html=None, page_driver=None):
                 return h1_text
         except:
             pass
-    # 3. h2 في البطاقة
+    # 3. h2 on card
     try:
         h2 = card.find_element(By.CSS_SELECTOR, "h2.breakWord.trimTwoLines.font-20, h2.breakWord, h2")
         h2_text = h2.text.strip()
@@ -503,12 +505,12 @@ def extract_model_from_card_and_page(card, page_html=None, page_driver=None):
             return h2_text
     except:
         pass
-    # 4. أول سطر من نص البطاقة
+    # 4. First line of card text
     card_text = card.text
     lines = [line.strip() for line in card_text.split('\n') if line.strip()]
     if lines:
         return lines[0]
-    # 5. تحليل النص
+    # 5. Fallback to text analysis
     return extract_brand_model_from_text(card_text)
 
 def extract_brand_model_from_text(text):
@@ -530,7 +532,7 @@ def extract_brand_model_from_text(text):
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
     return cleaned if cleaned else "غير متوفر"
 
-# -------------------- دوال محسنة لنوع الوقود --------------------
+# -------------------- Enhanced fuel type extraction --------------------
 def extract_fuel_type_advanced(driver):
     json_data = extract_json_ld(driver.page_source)
     page_text = driver.find_element(By.TAG_NAME, "body").text.lower()
@@ -568,7 +570,7 @@ def extract_fuel_type_advanced(driver):
         return "كهرباء"
     return "غير محدد"
 
-# -------------------- دوال استخراج السعر وكشف التقسيط المتقدم --------------------
+# -------------------- Price extraction and advanced installment detection --------------------
 def clean_price_number(price_str):
     if not isinstance(price_str, str) or price_str == "N/A":
         return np.nan
@@ -584,14 +586,14 @@ def is_installment_advanced(price_str, page_text, fuel_type=None, price_num=None
     if not isinstance(price_str, str):
         return False
 
-    # كلمات مفتاحية صريحة للتقسيط
+    # Explicit installment keywords
     installment_keywords = ['قسط', 'شهري', 'تقسيط', 'installment', 'monthly', 'دفعة أولى', 'دفعة']
     combined = price_str + " " + page_text
     for kw in installment_keywords:
         if re.search(rf'\b{kw}\b', combined, re.I):
             return True
 
-    # قواعد السعر حسب نوع الوقود
+    # Price rules based on fuel type
     if fuel_type is not None and price_num is not None:
         if fuel_type == 'كهرباء' and price_num < 9000:
             return True
@@ -623,7 +625,7 @@ def extract_price_from_page(driver):
             except:
                 pass
 
-    # 2. عناصر السعر المرئية
+    # 2. Visible price elements
     if price_num is np.nan:
         selectors = [
             "div.priceColor.bold.alignSelfCenter.font-18.ms-auto",
@@ -649,7 +651,7 @@ def extract_price_from_page(driver):
             except:
                 continue
 
-    # 3. البحث العام في الصفحة
+    # 3. General page search
     if price_num is np.nan:
         patterns = [
             r'(\d{1,3}(?:,\d{3})*)\s*(دينار|JD)',
@@ -668,7 +670,7 @@ def extract_price_from_page(driver):
 
     return price_text, price_num
 
-# -------------------- دوال مساعدة أخرى --------------------
+# -------------------- Other helper functions --------------------
 def extract_transmission_from_page(driver):
     try:
         page_text = driver.find_element(By.TAG_NAME, "body").text
@@ -713,37 +715,28 @@ def extract_insurance_from_page(driver):
         pass
     return "لا يوجد تأمين"
 
-# -------------------- إعداد المتصفح (معدل للعمل على GitHub Actions) --------------------
+# -------------------- Browser setup --------------------
 def setup_driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
-
-    # إعدادات مهمة للعمل في بيئة headless (GitHub Actions)
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--remote-debugging-port=9222")
-
-    # استخدام webdriver-manager لتثبيت chromedriver تلقائياً
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     return driver
 
-# -------------------- البرنامج الرئيسي (معدل للتشغيل التلقائي) --------------------
+# -------------------- Main program --------------------
 def main():
     driver = setup_driver()
     base_url = "https://jo.opensooq.com"
     search_url = urljoin(base_url, "/ar/سيارات-ومركبات/سيارات-للبيع?search=true&Post_type=7511&Payment_Method=7513&CarCustoms=12565&has_price=1")
 
-    print(fix_arabic("🔗 جاري تحميل صفحة البحث..."))
+    print(fix_arabic("🔗 Loading search page..."))
     driver.get(search_url)
     wait = WebDriverWait(driver, 20)
 
-    # إحصائيات مبدئية
+    # Initial statistics
     try:
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "a.postListItemData")))
         first_page_count = len(driver.find_elements(By.CSS_SELECTOR, "a.postListItemData"))
@@ -755,24 +748,23 @@ def main():
         except:
             total_pages = 1
         total_ads_estimate = first_page_count * total_pages
-        print(fix_arabic(f"\n📊 إحصائيات البحث:"))
-        print(fix_arabic(f"   - عدد الإعلانات في الصفحة الأولى: {first_page_count}"))
-        print(fix_arabic(f"   - عدد الصفحات المتاحة: {total_pages}"))
-        print(fix_arabic(f"   - العدد التقريبي الإجمالي: ~{total_ads_estimate} إعلان"))
+        print(fix_arabic(f"\n📊 Search statistics:"))
+        print(fix_arabic(f"   - Ads on first page: {first_page_count}"))
+        print(fix_arabic(f"   - Available pages: {total_pages}"))
+        print(fix_arabic(f"   - Estimated total: ~{total_ads_estimate} ads"))
     except Exception as e:
-        print(fix_arabic(f"⚠️ لم أتمكن من حساب الإحصائيات: {e}"))
+        print(fix_arabic(f"⚠️ Could not calculate statistics: {e}"))
 
-    # 🟢 بدلاً من طلب الإدخال من المستخدم، نستخدم قيمة ثابتة (مثلاً 100) أو 'all'
-    # حتى تعمل في بيئة غير تفاعلية مثل GitHub Actions
-    user_input = 'all'   # يمكنك تغييرها إلى رقم محدد مثل '100' إذا أردت
-
+    # Choose number of ads
+    print(fix_arabic("\n🔢 How many ads do you want to scrape? (Enter a number or 'all' to scrape all): "))
+    user_input = input().strip().lower()
     if user_input == 'all':
         max_ads = float('inf')
     else:
         try:
             max_ads = int(user_input)
         except:
-            print(fix_arabic("❌ إدخال غير صحيح، سيتم سحب 10 إعلانات فقط."))
+            print(fix_arabic("❌ Invalid input, scraping only 10 ads."))
             max_ads = 10
 
     all_ads = []
@@ -781,12 +773,12 @@ def main():
     stop_flag = False
 
     while not stop_flag:
-        print(fix_arabic(f"\n📄 جاري مسح الصفحة {current_page}..."))
+        print(fix_arabic(f"\n📄 Scraping page {current_page}..."))
         try:
             wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "a.postListItemData")))
             time.sleep(2)
             ad_cards = driver.find_elements(By.CSS_SELECTOR, "a.postListItemData")
-            print(fix_arabic(f"   تم العثور على {len(ad_cards)} إعلان في هذه الصفحة."))
+            print(fix_arabic(f"   Found {len(ad_cards)} ads on this page."))
 
             for card in ad_cards:
                 if ad_counter > max_ads:
@@ -799,7 +791,7 @@ def main():
                         continue
                     full_link = urljoin(base_url, relative_link)
 
-                    # بيانات من البطاقة
+                    # Data from card
                     card_text = card.text
                     try:
                         location_elem = card.find_element(By.CSS_SELECTOR, "div.flex.alignItems.gap-5.darkGrayColor")
@@ -812,10 +804,10 @@ def main():
                     condition = extract_condition(card_text)
                     seller_type = extract_seller_type(card)
 
-                    # استخراج الموديل مبدئياً
+                    # Initial model extraction
                     model = extract_model_from_card_and_page(card)
 
-                    # الدخول إلى صفحة التفاصيل
+                    # Enter details page
                     price_text = "N/A"
                     price_num = np.nan
                     fuel_type = "غير محدد"
@@ -835,21 +827,21 @@ def main():
                             if year == "N/A":
                                 year = extract_year(driver.find_element(By.TAG_NAME, "body").text)
 
-                            # استخراج السعر
+                            # Extract price
                             price_text, price_num = extract_price_from_page(driver)
 
-                            # استخراج نوع الوقود
+                            # Extract fuel type
                             fuel_type = extract_fuel_type_advanced(driver)
 
-                            # التحقق من التقسيط المتقدم
+                            # Advanced installment check
                             page_text_full = driver.find_element(By.TAG_NAME, "body").text
                             if is_installment_advanced(price_text, page_text_full, fuel_type, price_num):
-                                print(fix_arabic(f"⏭️ تخطي إعلان {ad_counter} (تقسيط) - {fuel_type} بسعر {price_num}"))
+                                print(fix_arabic(f"⏭️ Skipping ad {ad_counter} (installment) - {fuel_type} at {price_num}"))
                                 driver.close()
                                 driver.switch_to.window(driver.window_handles[0])
                                 continue
 
-                            # باقي البيانات
+                            # Remaining data
                             insurance = extract_insurance_from_page(driver)
                             transmission = extract_transmission_from_page(driver)
                             color = extract_color_from_page(driver)
@@ -857,7 +849,7 @@ def main():
                             driver.close()
                             driver.switch_to.window(driver.window_handles[0])
                         except Exception as e:
-                            print(fix_arabic(f"⚠️ خطأ في فتح التفاصيل للإعلان {ad_counter}: {e}"))
+                            print(fix_arabic(f"⚠️ Error opening details for ad {ad_counter}: {e}"))
                             if len(driver.window_handles) > 1:
                                 driver.close()
                             driver.switch_to.window(driver.window_handles[0])
@@ -885,7 +877,7 @@ def main():
                     ad_counter += 1
 
                 except Exception as e:
-                    print(fix_arabic(f"⚠️ خطأ في معالجة إعلان: {e}"))
+                    print(fix_arabic(f"⚠️ Error processing ad: {e}"))
                     if len(driver.window_handles) > 1:
                         driver.close()
                         driver.switch_to.window(driver.window_handles[0])
@@ -894,68 +886,69 @@ def main():
             if stop_flag:
                 break
 
-            # الانتقال للصفحة التالية
+            # Go to next page
             try:
                 next_button = driver.find_element(By.CSS_SELECTOR, "a[data-id='nextPageArrow']")
                 driver.execute_script("arguments[0].click();", next_button)
                 time.sleep(3)
                 current_page += 1
             except NoSuchElementException:
-                print(fix_arabic("لا يوجد صفحات إضافية."))
+                print(fix_arabic("No more pages."))
                 break
 
         except TimeoutException:
-            print(fix_arabic("انتهت مهلة تحميل الصفحة."))
+            print(fix_arabic("Page load timeout."))
             break
         except Exception as e:
-            print(fix_arabic(f"خطأ غير متوقع: {e}"))
+            print(fix_arabic(f"Unexpected error: {e}"))
             break
 
     driver.quit()
 
-    # معالجة البيانات وحفظها
+    # Process and save data
     if all_ads:
         df = pd.DataFrame(all_ads)
         df = df[['ID', 'Model', 'Year', 'Condition', 'Fuel Type', 'Mileage', 'Seller Type', 'Location', 'Price', 'Insurance', 'Transmission', 'Color']]
 
-        # حفظ النسخة العربية
+        # Save Arabic version
         arabic_file = "cars_arabic.xlsx"
         df.to_excel(arabic_file, index=False)
-        print(fix_arabic(f"\n✅ تم حفظ النسخة العربية: {arabic_file}"))
+        print(fix_arabic(f"\n✅ Saved Arabic version: {arabic_file}"))
 
-        # إنشاء نسخة إنجليزية مع الترجمة الذكية
-        print(fix_arabic("🔄 جاري ترجمة البيانات إلى الإنجليزية..."))
+        # Create English version with smart translation
+        print(fix_arabic("🔄 Translating data to English..."))
         df_en = df.copy()
 
-        # ترجمة الحقول النصية (عدا الموديل)
+        # Translate textual fields (except Model)
         for col in ['Condition', 'Fuel Type', 'Seller Type', 'Location', 'Insurance', 'Transmission', 'Color']:
             df_en[col] = df_en[col].apply(lambda x: translate_text(x))
 
-        # ترجمة الموديل باستخدام الترجمة الذكية
+        # Translate model using smart translation
         df_en['Model'] = df_en['Model'].apply(lambda x: translate_car_model_smart(x))
 
-        # إزالة القيم غير الصالحة
+        # Replace invalid values
         df_en = df_en.replace(['N/A', 'غير محدد', 'غير متوفر', 'لا يوجد تأمين'], np.nan)
 
-        # لا نضيف ad_id
+        # No ad_id added
+        # Save Kaggle file
         kaggle_file = "jordan_cars_kaggle.csv"
         df_en.to_csv(kaggle_file, index=False, encoding='utf-8-sig')
-        print(fix_arabic(f"✅ تم حفظ نسخة Kaggle: {kaggle_file}"))
+        print(fix_arabic(f"✅ Saved Kaggle version: {kaggle_file}"))
 
-        # إحصائيات سريعة
-        print(fix_arabic("\n📊 إحصائيات البيانات:"))
-        print(f"إجمالي الإعلانات: {len(df_en)}")
-        print(f"السيارات الكهربائية: {df_en[df_en['Fuel Type'] == 'Electric'].shape[0]}")
-        print(f"السيارات الهايبرد: {df_en[df_en['Fuel Type'] == 'Hybrid'].shape[0]}")
-        print(f"السيارات البنزين: {df_en[df_en['Fuel Type'] == 'Petrol'].shape[0]}")
-        print(f"السيارات الديزل: {df_en[df_en['Fuel Type'] == 'Diesel'].shape[0]}")
+        # Quick statistics
+        print(fix_arabic("\n📊 Data statistics:"))
+        print(f"Total ads: {len(df_en)}")
+        print(f"Electric cars: {df_en[df_en['Fuel Type'] == 'Electric'].shape[0]}")
+        print(f"Hybrid cars: {df_en[df_en['Fuel Type'] == 'Hybrid'].shape[0]}")
+        print(f"Petrol cars: {df_en[df_en['Fuel Type'] == 'Petrol'].shape[0]}")
+        print(f"Diesel cars: {df_en[df_en['Fuel Type'] == 'Diesel'].shape[0]}")
 
-        # عرض عينة
-        print(fix_arabic("\n📋 عينة من البيانات النهائية (أول 5 صفوف):"))
+        # Show sample
+        print(fix_arabic("\n📋 Sample of final data (first 5 rows):"))
         print(df_en[['Model', 'Year', 'Fuel Type', 'Price']].head())
 
     else:
-        print(fix_arabic("لم يتم العثور على بيانات."))
+        print(fix_arabic("No data found."))
 
 if __name__ == "__main__":
     main()
